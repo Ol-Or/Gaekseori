@@ -34,7 +34,7 @@ try:
         value = bus.read_byte(address)
         if value > 5 :
             motor_control(True,50)
-            time.sleep(5)
+            time.sleep(5)     #시간 측정 해보고 설정할거임
             pwm.stop()
         
 except KeyboardInterrupt:
