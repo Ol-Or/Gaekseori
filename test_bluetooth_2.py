@@ -1,5 +1,5 @@
 import bluetooth
-#import socket
+#import socket   
 
 server_socket=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
 port = 1
