@@ -1,7 +1,11 @@
 import RPi.GPIO as GPIO  # RPi.GPIO 라이브러리를 GPIO로 사용
+import Adafruit_DHT  # 라이브러리 불러오기(습도센서 라이브러리)
 from time import sleep  # time 라이브러리의 sleep함수 사용
 
+sensor = Adafruit_DHT.DHT11  # sensor 객체 생성
+himidpin = 2  # 습도 핀
 servoPin = 12   # 서보 핀
+humidity = Adafruit_DHT.read_retry(sensor, pin)   # 센서 객체에서 센서 값(습도) 읽기
 SERVO_MAX_DUTY = 12   # 서보의 최대(180도) 위치의 주기
 SERVO_MIN_DUTY = 3    # 서보의 최소(0도) 위치의 주기
 
