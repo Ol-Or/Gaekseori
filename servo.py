@@ -36,16 +36,6 @@ if __name__ == "__main__":
     # 서보 0도에 위치
     setServoPos(0)
     sleep(1)  # 1초 대기
-    # 90도에 위치
-    setServoPos(90)
-    sleep(1)
-    # 50도..
-    setServoPos(50)
-    sleep(1)
-
-    # 120도..
-    setServoPos(120)
-    sleep(1)
 
     # 180도에 위치
     setServoPos(180)
