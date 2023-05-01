@@ -10,7 +10,7 @@ client_socket,address = server_socket.accept()
 print ("Accepted connection from ",address)
 
 while true:
-    data = client_socket.recv(1024)
+    data = client_socket.recv(1024)   #앱에서 받은 데이터 프린트 (버튼 마다 a~h로 설정함..)
     print ("Received: %s" % data)
 
 client_socket.close()
