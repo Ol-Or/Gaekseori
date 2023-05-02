@@ -30,19 +30,17 @@ def turn_off_pump():
     GPIO.output(PUMP_PIN, GPIO.LOW)
     print("워터펌프가 중지됩니다.")
 
-# 불꽃감지 함수
+# 불꽃감지 워터펌프 작동 함수
 
 
 def callback(channel):
     if GPIO.input(channel):
-        print("Fire detected! Activating pump...")
-        GPIO.output(pump_channel, GPIO.HIGH)  # 워터펌프 on
+        turn_on_pump()  # 워터펌프 on
         time.sleep(5)  # 워터펌프 5초동안 작동
-        GPIO.output(pump_channel, GPIO.LOW)  # 워터펌프 off
-        print("Pump stopped.")
-
+        turn_off_pump()  # 워터펌프 off
 
 # 폭염 시 워터펌프 작동(온도가 일정 이상 올라가면)
+
 
 if temperature >= :  # !!!!!!!!!!!온도 어느 정도로 설정할건지!!!!!!!
     turn_on_pump()
