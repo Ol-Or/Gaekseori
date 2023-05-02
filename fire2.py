@@ -42,7 +42,7 @@ def callback(channel):
 # 폭염 시 워터펌프 작동(온도가 일정 이상 올라가면)
 
 
-if temperature >= :  # !!!!!!!!!!!온도 어느 정도로 설정할건지!!!!!!!
+if temperature >=:  # !!!!!!!!!!!온도 어느 정도로 설정할건지!!!!!!!
     turn_on_pump()
 else:
     turn_off_pump()
