@@ -23,8 +23,8 @@ def turn_on_pump():
     GPIO.output(PUMP_PIN, GPIO.HIGH)
     print("워터펌프가 작동합니다.")
 
-
 # 워터펌프를 중지시키는 함수
+
 
 def turn_off_pump():
     GPIO.output(PUMP_PIN, GPIO.LOW)
@@ -46,7 +46,6 @@ if temperature >= :  # !!!!!!!!!!!온도 어느 정도로 설정할건지!!!!!!!
     turn_on_pump()
 else:
     turn_off_pump()
-
 
 # GPIO 핀 값 변경 감지 이벤트 등록
 GPIO.add_event_detect(fire_channel, GPIO.BOTH, bouncetime=300)
