@@ -75,7 +75,7 @@ while True:
             prev_frame_time = new_frame_time
         prev_box = (center_x, center_y)
 
-    # 현재 시간을 변수에 저장하고 이전 프레임 시간과 비교하여 프레임 속됴(FPS)계산
+    # 현재 시간을 변수에 저장하고 이전 프레임 시간과 비교하여 프레임 속도(FPS)계산
     fps = 1 / (new_frame_time - prev_frame_time)
     prev_frame_time = new_frame_time
     print(fps)
