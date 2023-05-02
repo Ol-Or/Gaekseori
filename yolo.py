@@ -9,10 +9,10 @@ cap = cv2.VideoCapture("")  # 동영상 파일 열기
 # 동영상 파일 프레임 수 및 크기 확인
 w = round(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 h = round(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-fps = cap.get(cv2.CAP_PROP_FPS)  # 프레임 수
+fps_video = cap.get(cv2.CAP_PROP_FPS)  # 프레임 수
 
-fourcc = cv2.VideoWritier_fourcc(*'DIVX')
-delay = round(1000/fps video)
+fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+delay = round(1000/fps_video)
 
 # 출력 동영상 파일 생성(프레임별로 이미지 저장, videowriter 함수 사용)
 out = cv2.VideoWriter('output.avi', fourcc, fps video, (w, h))
@@ -34,7 +34,7 @@ while True:
         break
 
     # bounding box 출력
-    results = model(img, stream=TRUE)
+    results = model(img, stream=True)
     for r in results:
         boxes = r.boxes
         for box in boxes:
@@ -64,7 +64,7 @@ while True:
 
             # 이전 프레임과 현재 프레임 사이의 시간 간격 계산
             new_frame_time = cv2.getTickCount()
-            if prev_time is not None:
+            if prev_frame_time is not None:
                 time_interval = (new_frame_time -
                                  prev_frame_time)/cv2.getTickFrequency()
 
