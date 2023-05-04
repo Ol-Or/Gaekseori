@@ -1,4 +1,5 @@
 # Web streaming
+# only 32-bit os
 # http://192.168.41.211:8000
 
 import io
