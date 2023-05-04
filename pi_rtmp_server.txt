@@ -1,0 +1,54 @@
+# nginx 패키지 설치
+sudo apt-get update
+sudo apt-get install nginx libnginx-mod-rtmp
+
+
+#
+sudo rm sites-enabled / default
+sudo systemctl start nginx.service
+sudo systemctl status nginx.service
+
+
+# rtmp 서버 파일 만들기
+sudo nano /etc/nginx/rtmp.conf
+
+# rtmp 서버 구성
+rtmp {
+  server {
+    listen 1935;
+    chunk_size 4096;
+    application live {
+      live on;
+      record off;
+    }
+  }
+}
+
+
+#nginx 구성
+sudo nano /etc/nginx/nginx.conf
+
+#rtmp 파일 저장
+include /etc/nginx/rtmp.conf;
+
+
+#nginx 서버 재시작
+sudo systemctl stop nginx.service
+sudo systemctl start nginx.service
+sudo systemctl status nginx.service
+
+
+
+# 서버가 잘 설치됐으면 1935 빨간 글씨로 떠야함
+netstat -an | grep 1935
+
+
+#rtmp url 수정!!!
+rtmp://192.168.1.105/live/key
+
+
+
+
+rtmp://192.168.1.105/live/1
+rtmp://192.168.1.105/live/2
+
