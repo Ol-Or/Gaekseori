@@ -8,7 +8,7 @@ bus=smbus.SMBus(1)
 
 try:
     while True:
-        bus.write_byte(adress,AIN2)
+        bus.write_byte(address,AIN2)
         value = bus.read_byte(address)
         print("Water value: %d" % value)
         time.sleep(0.1)
