@@ -15,7 +15,7 @@ fourcc = cv2.VideoWriter_fourcc(*'DIVX')
 delay = round(1000/fps_video)
 
 # 출력 동영상 파일 생성(프레임별로 이미지 저장, videowriter 함수 사용)
-out = cv2.VideoWriter('output.avi', fourcc, fps video, (w, h))
+out = cv2.VideoWriter('output.avi', fourcc, fps_video, (w, h))
 
 # YOLOv8n 모델을 YOLO함수 이용하여 불러옴
 model = YOLO("../Yolo-Weights/yolov8n.pt")
