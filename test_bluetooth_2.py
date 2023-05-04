@@ -2,7 +2,7 @@ import bluetooth
 #import socket   
 
 server_socket=bluetooth.BluetoothSocket( bluetooth.RFCOMM )
-port = 1
+port = 22
 server_socket.bind(("",port))
 server_socket.listen(1)
 
