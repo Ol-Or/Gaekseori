@@ -21,14 +21,14 @@ temperature = Adafruit_DHT.read_retry(sensor, pin)
 
 def turn_on_pump():
     GPIO.output(PUMP_PIN, GPIO.HIGH)
-    print("워터펌프가 작동합니다.")
+    print("turning on water pump")
 
 # 워터펌프를 중지시키는 함수
 
 
 def turn_off_pump():
     GPIO.output(PUMP_PIN, GPIO.LOW)
-    print("워터펌프가 중지됩니다.")
+    print("turning off water pump")
 
 # 불꽃감지 워터펌프 작동 함수
 
