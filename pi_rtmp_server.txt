@@ -3,7 +3,7 @@ sudo apt-get update
 sudo apt-get install nginx libnginx-mod-rtmp
 
 
-#
+# nginx 비활성화
 sudo rm sites-enabled / default
 sudo systemctl start nginx.service
 sudo systemctl status nginx.service
