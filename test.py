@@ -31,7 +31,7 @@ else:
 
 #!!!!!!!!!!!!!!! 3 서보모터 test!!!!!!!!!!!!!!!!!!
 
-servo_pin = 18  # 서보모터 신호선을 연결한 GPIO 핀
+servo_pin = 12  # 서보모터 신호선을 연결한 GPIO 핀
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servo_pin, GPIO.OUT)
