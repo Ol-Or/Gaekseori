@@ -43,12 +43,13 @@ sudo systemctl status nginx.service
 netstat -an | grep 1935
 
 
-#rtmp url 수정!!!
-rtmp://192.168.1.105/live/key
+
+#rtmp url 수정!!! ("101"은 스트리밍 영상 이름으로 임의의 값으로 설정)
+rtmp://192.168.1.105:1935/live/101
 
 
 
 
-rtmp://192.168.1.105/live/1
-rtmp://192.168.1.105/live/2
-
+#설치된 비디오 장치 확인 (비디오 인식됐는지 여부 확인)
+sudo apt-get install v4l-utils -y
+v4l2-ctl --list-devices
