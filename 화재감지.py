@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-FLAME = 21
+FLAME = 18
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(FLAME, GPIO.IN)
 
