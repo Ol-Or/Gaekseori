@@ -6,7 +6,7 @@ import Adafruit_DHT
 import RPi.GPIO as GPIO
 import time
 
-sensor_pin = 17  # 불꽃 감지 센서 신호선을 연결한 GPIO 핀
+sensor_pin = 18  # 불꽃 감지 센서 신호선을 연결한 GPIO 핀
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor_pin, GPIO.IN)
