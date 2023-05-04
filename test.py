@@ -13,8 +13,35 @@ GPIO.setup(sensor_pin, GPIO.IN)
 
 while True:
     if GPIO.input(sensor_pin):
-        print('불꽃 감지!')
+        print('fire!')
     time.sleep(0.1)
+
+# 불꽃감지2
+
+# 불꽃 감지 센서가 연결된 GPIO 핀 번호
+flame_pin = 18
+
+# GPIO 모드 설정
+GPIO.setmode(GPIO.BCM)
+
+# 불꽃 감지 센서 출력값을 읽기 위한 핀 설정
+GPIO.setup(flame_pin, GPIO.IN)
+
+try:
+    while True:
+        # 불꽃 감지 센서 출력값 읽기
+        flame_detected = GPIO.input(flame_pin)
+
+        # 불꽃 감지되면 "Fire detected!" 출력
+        if flame_detected:
+            print("Fire detected!")
+
+        # 0.5초 간격으로 반복
+        time.sleep(0.5)
+
+except KeyboardInterrupt:
+    # 프로그램 종료 시 GPIO 리소스 해제
+    GPIO.cleanup()
 
 
 #!!!!!!!!!!!!!!! 2 온습도센서 test!!!!!!!!!!!!!!!!!!
