@@ -16,8 +16,25 @@ while True:
         print('fire!')
     time.sleep(0.1)
 
+#!!!!!!!!!!!!!!!!!!! 2 불꽃감지 test!!!!!!!!!!!!!!!!!!!
+
+sensor = Adafruit_DHT.DHT22
+pin = 4
+while True:
+    try:
+        h, t = Adafruit_DHT.read_retry(sensor, pin)
+        if h is not None and t is not None:
+            print("temperature = {0:0.1f}*C  humidity={1:0.1f}%".format(t, h))
+        else:
+            print('read error')
+        time.sleep(2)
+    except KeyboardInterrupt:
+        pass
+        print("exit")
+        exit()
 
 #!!!!!!!!!!!!!!! 2 온습도센서 test!!!!!!!!!!!!!!!!!!
+
 
 sensor = Adafruit_DHT.DHT11  # 습도 센서 모델 선택
 pin = 21  # 습도 센서 신호선을 연결한 GPIO 핀
@@ -30,6 +47,7 @@ else:
     print('센서에서 값을 읽어올 수 없습니다.')
 
 #!!!!!!!!!!!!!!! 3 서보모터 test!!!!!!!!!!!!!!!!!!
+
 
 servo_pin = 12  # 서보모터 신호선을 연결한 GPIO 핀
 
@@ -62,6 +80,7 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 
 #!!!!!!!!!!!!!!! 4 수위센서 test!!!!!!!!!!!!!!!!!!
+
 
 address = 0x48
 AIN2 = 0x42
