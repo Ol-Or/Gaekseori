@@ -18,7 +18,7 @@ while True:
 
 #!!!!!!!!!!!!!!!!!!! 2 온습도 test!!!!!!!!!!!!!!!!!!!
 
-sensor = Adafruit_DHT.DHT22
+sensor = Adafruit_DHT.DHT11
 pin = 4
 while True:
     try:
