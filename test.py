@@ -16,7 +16,7 @@ while True:
         print('fire!')
     time.sleep(0.1)
 
-#!!!!!!!!!!!!!!!!!!! 2 불꽃감지 test!!!!!!!!!!!!!!!!!!!
+#!!!!!!!!!!!!!!!!!!! 2 온습도 test!!!!!!!!!!!!!!!!!!!
 
 sensor = Adafruit_DHT.DHT22
 pin = 4
