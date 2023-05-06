@@ -4,7 +4,11 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 StepPins=[11,13,15,16]
 
-stepCounter = 0
+for pin in StepPins:
+    GPIO.stepup(pin,GPIO.OUT)
+    GPIO.output(pin,False)
+    
+StepCounter = 0
 
 StepCount=4
 
