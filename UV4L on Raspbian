@@ -1,6 +1,6 @@
 #Bullseye for 32-bit Raspberry PI OS
 #automatically start service
-#Terminal
+#Open terminal
 
 sudo rpi-update
 echo /opt/vc/lib/ 
@@ -39,7 +39,7 @@ sudo apt-get install uv4l-xmpp-bridge
 sudo apt-get install uv4l-raspidisp-extras
 sudo reboot
 
-#check Local address State Listen
+#check Local address 8080 State Listen
 netstat -nlpt
 
 #change "nopreview = yes"
