@@ -12,6 +12,7 @@ GPIO.setup(5, GPIO.OUT)  # 뚜껑 핀번호 바꾸기
 GPIO.setup(6, GPIO.OUT)  # 차수판 핀번호 바꾸기
 GPIO.setup(7, GPIO.OUT)  # 지붕 핀번호 바꾸기
 GPIO.setup(8, GPIO.OUT)  # 천장 핀번호 바꾸기
+
 GPIO.output(5, GPIO.LOW)  # 뚜껑 핀번호 바꾸기
 GPIO.output(6, GPIO.LOW)  # 차수판 핀번호 바꾸기
 GPIO.output(7, GPIO.LOW)  # 지붕 핀번호 바꾸기
