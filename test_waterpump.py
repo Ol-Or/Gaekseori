@@ -1,16 +1,18 @@
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BCM)
+
 A1A = 23
 GPIO.setup(A1A, GPIO.OUT)
 GPIO.output(A1A, GPIO.LOW)
 
-GPIO.setmode(GPIO.BCM)
-
-while True:
+def run_motor(duration):
     GPIO.output(A1A, GPIO.HIGH)
-    time.sleep(5)
+    time.sleep(duration)
     GPIO.output(A1A, GPIO.LOW)
 
-GPIO.cleanup
+# 모터를 10초간 동작시키기
+run_motor(10)
 
+GPIO.cleanup()
