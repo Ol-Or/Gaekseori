@@ -1,6 +1,7 @@
 import time
 import RPi.GPIO as GPIO
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 StepPins=[11,13,15,16]
 
