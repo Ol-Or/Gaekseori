@@ -5,7 +5,7 @@ GPIO.setmode(GPIO.BCM)
 StepPins=[11,13,15,16]
 
 for pin in StepPins:
-    GPIO.stepup(pin,GPIO.OUT)
+    GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,False)
     
 StepCounter = 0
