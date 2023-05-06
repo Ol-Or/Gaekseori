@@ -1,3 +1,5 @@
+# 시작하기 전에 flask 설치 필수(pip install flask)
+# 안드로이드 앱에서 GPIO 핀 제어하는 프레임 웤 flask 사용
 from flask import Flask, request
 import RPi.GPIO as GPIO
 
@@ -15,6 +17,8 @@ GPIO.output(6, GPIO.LOW)
 GPIO.output(7, GPIO.LOW)
 GPIO.output(8, GPIO.LOW)
 
+# 펌프 뚜껑 함수
+
 
 @app.route('/rid', methods=['POST'])
 def rid():
@@ -24,6 +28,8 @@ def rid():
     else:
         GPIO.output(5, GPIO.LOW)
     return 'OK', 200
+
+# 차수판 함수
 
 
 @app.route('/plate', methods=['POST'])
@@ -35,6 +41,8 @@ def plate():
         GPIO.output(6, GPIO.LOW)
     return 'OK', 200
 
+# 지붕 함수
+
 
 @app.route('/roof', methods=['POST'])
 def roof():
@@ -44,6 +52,8 @@ def roof():
     else:
         GPIO.output(7, GPIO.LOW)
     return 'OK', 200
+
+# 천장 함수
 
 
 @app.route('/ceiling', methods=['POST'])
