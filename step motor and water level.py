@@ -40,11 +40,11 @@ try:
         bus.write_byte(address,AIN2)
         value = bus.read_byte(address)
         if value > 256: # water level
-            print('Flood is occur!')
+            print('Flood is occured!')
             Seq = SeqClockwise if direction else SeqCounterClockwise
         else :
-        # Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
-            break
+            Seq = SeqCounterClockwise if direction else SeqClockwise   #시계방향(앱으로 구현)
+            print('good!')
 
         for pin in range(0, 4):
             xpin = StepPins[pin]
