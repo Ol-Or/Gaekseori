@@ -65,11 +65,19 @@ StepCount=4
 bus.write_byte(address,AIN2)
 value = bus.read_byte(address)
 
+# Rainwater detection
+def set_angle(angle):
+    duty = angle / 18 + 2  # duty = 각도 / 18 + 2
+    GPIO.output(servo_pin, True)
+    pwm.ChangeDutyCycle(duty)
+    time.sleep(1)
+    GPIO.output(servo_pin, False)
+    pwm.ChangeDutyCycle(0)
 
 # if fire is detected
 try:
     while True:
-        if GPIO.input(FLAME) == 0 : # fire is detected
+        if GPIO.input(fire_channel) == 0 : # fire is detected
             print('fire is detected')
             GPIO.output(pump1_channel, GPIO.HIGH)   #water pump on
             time.sleep(5)    
@@ -116,16 +124,6 @@ try:
 
         time.sleep(0.01)
       
-# Rainwater detection
-def set_angle(angle):
-    duty = angle / 18 + 2  # duty = 각도 / 18 + 2
-    GPIO.output(servo_pin, True)
-    pwm.ChangeDutyCycle(duty)
-    time.sleep(1)
-    GPIO.output(servo_pin, False)
-    pwm.ChangeDutyCycle(0)
-
-try:
     while True:
         if humidity >= 90:  # !!!!!!여기 빗물이 있을 때 습도 값을 몰라서 아직 작성안함!!!!!!!!!
             set_angle(0)    # 서보 0도에 위치
@@ -145,4 +143,3 @@ try:
 
 except KeyboardInterrupt:
     GPIO.cleanup()
-
