@@ -21,5 +21,6 @@ while True:
             GPIO.output(pump1_channel, GPIO.LOW)
             
         else:
+            print('temperature = {0:0.1f}*C , water pump off!',format(temperature))
             GPIO.output(pump1_channel, GPIO.LOW)
         time.sleep(1)
