@@ -4,7 +4,7 @@ import Adafruit_DHT
 import smbus
 
 sensor = Adafruit_DHT.DHT11
-pump2_channel =20      #heatwave
+pump1_channel =23     #heatwave
 ht_pin = 21
 
 GPIO.setmode(GPIO.BCM)
@@ -16,10 +16,10 @@ humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
 while True:
         if temperature >= 30: 
             print('temperature = {0:0.1f}*C ,water pump on!',format(temperature))
-            GPIO.output(pump2_channel, GPIO.HIGH)
+            GPIO.output(pump1_channel, GPIO.HIGH)
             time.sleep(7)
-            GPIO.output(pump2_channel, GPIO.LOW)
+            GPIO.output(pump1_channel, GPIO.LOW)
             
         else:
-            GPIO.output(pump2_channel, GPIO.LOW)
+            GPIO.output(pump1_channel, GPIO.LOW)
         time.sleep(1)
