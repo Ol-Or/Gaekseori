@@ -25,7 +25,7 @@ def set_angle(angle):
 
 if humidity >= 58: 
     set_angle(90)
-    print('')
+    print('humidity={1:0.1f}%, water tank open!'.format(humidity))
     sleep(1)  # 1초 대기
 
     # 180도에 위치
