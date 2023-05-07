@@ -41,8 +41,8 @@ try:
     value = bus.read_byte(address)
     if value > 256: # 수위 측정한 값 쓰기!
         Seq = SeqClockwise if direction else SeqCounterClockwise
-    else :
-        Seq = SeqCounterClockwise if direction else SeqClockwise
+    #else :
+        #Seq = SeqCounterClockwise if direction else SeqClockwise
 
     for pin in range(0, 4):
         xpin = StepPins[pin]
