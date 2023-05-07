@@ -16,7 +16,6 @@ servo_pin = 12   # 서보 핀
 # GPIO 초기화
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(fire_channel, GPIO.IN)
-GPIO.setmode(GPIO.BOARD)        # GPIO 설정
 GPIO.setup(servo_pin, GPIO.OUT)  # 서보핀 출력으로 설정
 #water pump
 GPIO.setup(pump1_channel, GPIO.OUT)
