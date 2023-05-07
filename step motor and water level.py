@@ -43,7 +43,7 @@ try:
             print('Flood is occur!')
             Seq = SeqClockwise if direction else SeqCounterClockwise
         else :
-        # Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
+            Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
             print('good!')
             break
 
