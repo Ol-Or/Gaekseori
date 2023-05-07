@@ -16,9 +16,9 @@ IN1 = 11  # Input Pin
 IN2 = 13  # Input Pin
 ENA = 15  # Enable Pin
 # 워터펌프 지붕
-A1A = 20
+A1A = 23
 # LED 핀들을 딕셔너리 변수로 선언
-pin_dict = {'IN1': 11, 'IN2': 13, 'ENA': 15, 'A1A': 20}
+pin_dict = {'IN1': 11, 'IN2': 13, 'ENA': 15, 'A1A': 23}
 GPIO.setup(pin_dict['IN1'], GPIO.OUT)   # 각각의 LED 핀들을 출력으로 설정
 GPIO.setup(pin_dict['IN2'], GPIO.OUT)
 GPIO.setup(pin_dict['ENA'], GPIO.OUT)   # 각각 LED의 현재 상태를 나타내는 변수
