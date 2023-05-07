@@ -14,11 +14,6 @@ servo = GPIO.PWM(servo_pin, 50)  # 서보핀을 PWM 모드 50Hz로 사용하기 
 servo.start(0)  # 서보 PWM 시작 duty = 0, duty가 0이면 서보는 동작하지 않는다.
 
 
-'''
-서보 위치 제어 함수
-degree에 각도를 입력하면 duty로 변환후 서보 제어(ChangeDutyCycle)
-'''
-
 def set_angle(angle):
     duty = angle / 18 + 2  # duty = 각도 / 18 + 2
     GPIO.output(servo_pin, True)
@@ -28,13 +23,14 @@ def set_angle(angle):
     pwm.ChangeDutyCycle(0)
 
 
-if humidity >= 알수 없는 값:  # !!!!!!여기 빗물이 있을 때 습도 값을 몰라서 아직 작성안함!!!!!!!!!
-    set_angle(0)    # 서보 0도에 위치
+if humidity >= 58: 
+    set_angle(90)
+    print('')
     sleep(1)  # 1초 대기
 
     # 180도에 위치
     set_angle(180)
-    sleep(10)  # 10초 대기 !!!!!!!!!!여기 얼마나 대기 시킬건지 정하기!!!!!!!!!!!!!!!!!!!
+    sleep(100) 
 
     # 서보 PWM 정지
     servo.stop()
@@ -42,8 +38,8 @@ if humidity >= 알수 없는 값:  # !!!!!!여기 빗물이 있을 때 습도 �
     GPIO.cleanup()
 
 else:
-    set_angle(0)    # 서보 0도에 위치
-    sleep(1)  # 1초 대기
+    set_angle(90)    # 서보 0도에 위치
+    sleep(100)  # 1초 대기
 
     # 서보 PWM 정지
     servo.stop()
