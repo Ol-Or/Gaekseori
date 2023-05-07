@@ -124,18 +124,21 @@ try:
         time.sleep(0.01)
       
     while True:
-        if humidity >= 90:  # !!!!!!여기 빗물이 있을 때 습도 값을 몰라서 아직 작성안함!!!!!!!!!
-            set_angle(0)    # 서보 0도에 위치
+        if humidity >= 65:  
+            print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
+            set_angle(90)    # 서보 0도에 위치
             time.sleep(1)  # 1초 대기
 
     # 180도에 위치
             set_angle(180)
-
+            time.sleep(100)
+            
     # 서보 PWM 정지
             servo.stop()
         else:
-            set_angle(0)    # 서보 0도에 위치
-            time.sleep(1)  # 1초 대기
+            print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
+            set_angle(90)    
+            time.sleep(100)  
 
         # 서보 PWM 정지
             servo.stop()
