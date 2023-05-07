@@ -7,6 +7,7 @@ ht_pin = 21  # 습도 핀
 servo_pin = 12   # 서보 핀
 humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
 
+GPIO.setwarnins(False)
 GPIO.setmode(GPIO.BOARD)        # GPIO 설정
 GPIO.setup(servo_pin, GPIO.OUT)  # 서보핀 출력으로 설정
 
