@@ -24,8 +24,8 @@ def set_angle(angle):
 
 
 if humidity >= 65: 
+    print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
     set_angle(90)
-    print('humidity={1:0.1f}%, water tank open!'.format(humidity))
     sleep(1)  # 1초 대기
 
     # 180도에 위치
@@ -38,7 +38,7 @@ if humidity >= 65:
     GPIO.cleanup()
 
 else:
-    print('humidity={1:0.1f}%, water tank open!'.format(humidity))
+    print('temperature={0:0.1f}*C  humidity={1:0.1f}%'.format(temperature, humidity))
     set_angle(90)    # 서보 0도에 위치
     sleep(100)  # 1초 대기
 
