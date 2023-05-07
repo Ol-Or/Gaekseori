@@ -22,8 +22,8 @@ def set_angle(angle):
     GPIO.output(servo_pin, False)
     servo.ChangeDutyCycle(0)
 
-
-if humidity >= 65:  
+if humidity is not None and temperature is not None:
+    if humidity >= 65:  
     print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
     set_angle(90)    
     time.sleep(1) 
@@ -37,10 +37,12 @@ if humidity >= 65:
     # GPIO 모드 초기화
     GPIO.cleanup()
 
+    else:
+        print('temperature={0:0.1f}*C  humidity={1:0.1f}%'.format(temperature, humidity))
+        set_angle(90)   
+        time.sleep(100)  
 else:
-    print('temperature={0:0.1f}*C  humidity={1:0.1f}%'.format(temperature, humidity))
-    set_angle(90)   
-    time.sleep(100)  
+    print('Failed to get reading. Try again!')
 
     # 서보 PWM 정지
     servo.stop()
