@@ -36,54 +36,53 @@ GPIO.output(A1A, GPIO.LOW)
 # 스텝모터 차수판
 
 # 모터 앞으로 이동
-def motorForward():
+def motorOn():
 	print("forward motion")
 	GPIO.output(IN1, True)  # forward
     GPIO.output(IN2, False)
     time.sleep(5)     #시간 측정 해보고 설정할거임
 #모터 뒤로 이동
-def motorBackward():
+def motorOff():
 	print ("backward motion")
 	GPIO.output(IN1, GPIO.LOW)
 	GPIO.output(IN2, GPIO.HIGH)
 	time.sleep(5)  #시간 측정 해보고 설정할거임
 #모터 정지
-def motorStop():
-	print ("stop")
-	GPIO.output(IN1, GPIO.LOW)
-	GPIO.output(IN2, GPIO.LOW)
-	#GPIO.cleanup()
+
 
 #워터펌프 동작
-def runPump(duration):
+def waterPumpOn(duration):
     GPIO.output(A1A, GPIO.HIGH)
     time.sleep(duration)
     GPIO.output(A1A, GPIO.LOW)
 
+def waterPumpOn():
+	GPIO.output(A1A, GPIO.LOW)
 
 @app.route('/')
 def hello():
 	return render_template('main.html')
 
 #차수판의 스텝모터 동작
-@app.route('/forward')
-def motor_forward():
-	motorForward()
+@app.route('/motoron')
+def motor_on():
+	motorOn()
 	return ('OK'), 204
 
-@app.route('/backward')
-def motor_backward():
-	motorBackward()
+@app.route('/motoroff')
+def motor_off():
+	motorOff()
 	return ('OK'), 204
 
-@app.route('/stop')
-def motor_stop():
-	motorStop()
+
+@app.route('/pumpon')
+def pump_on():
+	waterPumpOn()
 	return ('OK'), 204
 
-@app.route('/pump')
-def run_pump():
-	runPump()
+@app.route('/pumpoff')
+def pump_off():
+	waterPumpOn()
 	return ('OK'), 204
 
 if __name__ == "__main__":
