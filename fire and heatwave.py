@@ -24,15 +24,15 @@ GPIO.output(pump2_channel, GPIO.LOW)
 
 # if fire is detected
 if GPIO.input(fire_channel) == 1 : # fire is not detected
+    print('good')
     GPIO.output(pump2_channel, GPIO.LOW)   #water pump off
             
 else :                      # fire is detected
+    print(fire is detected!)
     GPIO.output(pump2_channel, GPIO.HIGH)   #water pump on
     time.sleep(5)
 
 # 폭염 시 워터펌프 작동(온도가 일정 이상 올라가면)
-
-
 if temperature >= 30: # !!!!!!!!!!!온도 어느 정도로 설정할건지!!!!!!!
     GPIO.output(pump1_channel, GPIO.LOW)  
 else:
