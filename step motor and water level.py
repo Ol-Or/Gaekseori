@@ -41,6 +41,8 @@ try:
     value = bus.read_byte(address)
     if value > 256: # 수위 측정한 값 쓰기!
         Seq = SeqCounterClockwise if direction else SeqClockwise
+        time.sleep(10)
+ 
     #else :
        # Seq = SeqClockwise if direction else SeqCounterClockwise
 
