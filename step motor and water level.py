@@ -35,7 +35,8 @@ StepCounter = 0
 
 StepCount=4
 
-while True:
+try:
+    while True:
     bus.write_byte(address,AIN2)
     value = bus.read_byte(address)
     if value > 256: # 수위 측정한 값 쓰기!
