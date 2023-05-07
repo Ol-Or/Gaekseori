@@ -6,6 +6,12 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 StepPins=[11,13,15,16]  #step motor GPIO
 
+#PCF module address
+address = 0x48
+AIN2 = 0x42
+
+bus=smbus.SMBus(1)
+
 for pin in StepPins:
     GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,False)
@@ -24,12 +30,6 @@ SeqCounterClockwise = [  #반시계방향
 ]
 
 direction = True
-
-#PCF module address
-address = 0x48
-AIN2 = 0x42
-
-bus=smbus.SMBus(1)
 
 StepCounter = 0
 
