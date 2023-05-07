@@ -27,11 +27,11 @@ def set_angle(angle):
 if humidity >= 65: 
     print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
     set_angle(90)
-    sleep(1)  # 1초 대기
+    time.sleep(1)  # 1초 대기
 
     # 180도에 위치
     set_angle(180)
-    sleep(100) 
+    time.sleep(100) 
 
     # 서보 PWM 정지
     servo.stop()
@@ -41,7 +41,7 @@ if humidity >= 65:
 else:
     print('temperature={0:0.1f}*C  humidity={1:0.1f}%'.format(temperature, humidity))
     set_angle(90)    # 서보 0도에 위치
-    sleep(100)  # 1초 대기
+    time.sleep(100)  # 1초 대기
 
     # 서보 PWM 정지
     servo.stop()
