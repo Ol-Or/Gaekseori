@@ -1,6 +1,6 @@
 #Bullseye for 32-bit Raspberry PI OS
 #automatically start service
-#Terminal
+#Open terminal
 
 sudo rpi-update
 echo /opt/vc/lib/ 
@@ -37,3 +37,10 @@ sudo apt-get install uv4l-demos
 openssl genrsa -out selfsign.key 2048 && openssl req -new -x509 -key selfsign.key -out selfsign.crt -sha256
 sudo apt-get install uv4l-xmpp-bridge
 sudo apt-get install uv4l-raspidisp-extras
+sudo reboot
+
+#check Local address 8080 State Listen
+netstat -nlpt
+
+#change "nopreview = yes"
+sudo nano /etc/uv4l/uv4l-raspicam.conf
