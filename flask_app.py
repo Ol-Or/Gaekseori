@@ -45,4 +45,4 @@ def control(pin, state):      # 각각의 pin을 켜고 끄기 위한 뷰함수
 
 
 if __name__ == "__main__":
-    app.run(host="192.168.207.211", port="9090")
+    app.run(host="0.0.0.0")
