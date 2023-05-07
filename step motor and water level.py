@@ -37,28 +37,28 @@ StepCount=4
 
 try:
     while True:
-    bus.write_byte(address,AIN2)
-    value = bus.read_byte(address)
+        bus.write_byte(address,AIN2)
+        value = bus.read_byte(address)
 
-    if value > 100: # 수위 측정한 값 쓰기!
-        print('Flood is occured!')
-        Seq = SeqCounterClockwise if direction else SeqClockwise
-    else :
-        print('good!')
-        #Seq = SeqClockwise if direction else SeqCounterClockwise
+        if value > 100: # 수위 측정한 값 쓰기!
+            print('Flood is occured!')
+            Seq = SeqCounterClockwise if direction else SeqClockwise
+        else :
+            print('good!')
+            #Seq = SeqClockwise if direction else SeqCounterClockwise
 
-    for pin in range(0, 4):
-        xpin = StepPins[pin]
-        if Seq[StepCounter][pin] != 0:
-            GPIO.output(xpin, True)
-        else:
-            GPIO.output(xpin, False)
+        for pin in range(0, 4):
+            xpin = StepPins[pin]
+            if Seq[StepCounter][pin] != 0:
+                GPIO.output(xpin, True)
+            else:
+                GPIO.output(xpin, False)
 
-    StepCounter += 1
-    if StepCounter == StepCount:
-        StepCounter = 0
-    if StepCounter < 0:
-        StepCounter = StepCount
+        StepCounter += 1
+        if StepCounter == StepCount:
+            StepCounter = 0
+        if StepCounter < 0:
+            StepCounter = StepCount
 
     time.sleep(0.01)
     
