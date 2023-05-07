@@ -23,7 +23,7 @@ def set_angle(angle):
     pwm.ChangeDutyCycle(0)
 
 
-if humidity >= 58: 
+if humidity >= 65: 
     set_angle(90)
     print('humidity={1:0.1f}%, water tank open!'.format(humidity))
     sleep(1)  # 1초 대기
@@ -38,6 +38,7 @@ if humidity >= 58:
     GPIO.cleanup()
 
 else:
+    print('humidity={1:0.1f}%, water tank open!'.format(humidity))
     set_angle(90)    # 서보 0도에 위치
     sleep(100)  # 1초 대기
 
