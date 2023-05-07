@@ -116,11 +116,6 @@ try:
         time.sleep(0.01)
       
 # Rainwater detection
-
-'''
-서보 위치 제어 함수
-degree에 각도를 입력하면 duty로 변환후 서보 제어(ChangeDutyCycle)
-'''
 def set_angle(angle):
     duty = angle / 18 + 2  # duty = 각도 / 18 + 2
     GPIO.output(servo_pin, True)
