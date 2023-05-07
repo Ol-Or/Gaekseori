@@ -14,7 +14,9 @@ ht_pin = 21
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(fire_channel, GPIO.IN)
 
-humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
+
+temperature = Adafruit_DHT.read_retry(sensor, fire_channel)
+humidity = Adafruit_DHT.read_retry(sensor, ht_pin)
 
 #water pump
 GPIO.setup(pump1_channel, GPIO.OUT)
