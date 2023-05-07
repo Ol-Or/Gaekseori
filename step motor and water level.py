@@ -36,30 +36,32 @@ StepCounter = 0
 StepCount=4
 
 try:
-    while True:
-    bus.write_byte(address,AIN2)
-    value = bus.read_byte(address)
-    if value > 256: # 수위 측정한 값 쓰기!
-        Seq = SeqCounterClockwise if direction else SeqClockwise
-        time.sleep(10)
- 
-    #else :
-       # Seq = SeqClockwise if direction else SeqCounterClockwise
+   while True:
+        bus.write_byte(address,AIN2)
+        value = bus.read_byte(address)
+        if value > 256: # water level
+            print('Flood is occur!')
+            Seq = SeqClockwise if direction else SeqCounterClockwise
+        else :
+        # Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
+            break
 
-    for pin in range(0, 4):
-        xpin = StepPins[pin]
-        if Seq[StepCounter][pin] != 0:
-            GPIO.output(xpin, True)
-        else:
-            GPIO.output(xpin, False)
+        for pin in range(0, 4):
+            xpin = StepPins[pin]
+            if Seq[StepCounter][pin] != 0:
+                GPIO.output(xpin, True)
+            else:
+                GPIO.output(xpin, False)
 
-    StepCounter += 1
-    if StepCounter == StepCount:
-        StepCounter = 0
-    if StepCounter < 0:
-        StepCounter = StepCount
+        StepCounter += 1
+        if StepCounter == StepCount:
+            StepCounter = 0
+        if StepCounter < 0:
+            StepCounter = StepCount
 
-    time.sleep(0.01)
+        time.sleep(0.01)
+
+
       
 except KeyboardInterrupt:
     GPIO.cleanup()
