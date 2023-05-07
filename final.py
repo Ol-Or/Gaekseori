@@ -13,6 +13,10 @@ pump2_channel =20      #heatwave
 ht_pin = 21
 servo_pin = 12   # 서보 핀
 
+#steping motor
+GPIO.setwarnings(False)
+StepPins=[11,13,15,16]  #steping motor GPIO
+
 # GPIO 초기화
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(fire_channel, GPIO.IN)
@@ -28,10 +32,6 @@ humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
 
 servo = GPIO.PWM(servo_pin, 50)  # 서보핀을 PWM 모드 50Hz로 사용하기 (50Hz > 20ms)
 servo.start(0)  # 서보 PWM 시작 duty = 0, duty가 0이면 서보는 동작하지 않는다.
-
-#steping motor
-GPIO.setwarnings(False)
-StepPins=[11,13,15,16]  #steping motor GPIO
 
 #PCF module address
 address = 0x48
@@ -64,7 +64,6 @@ StepCount=4
 
 bus.write_byte(address,AIN2)
 value = bus.read_byte(address)
-
 
 # if fire is detected
 try:
