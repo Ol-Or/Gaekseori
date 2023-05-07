@@ -35,7 +35,8 @@ StepCounter = 0
 
 StepCount=4
 
-while True:
+try:
+    while True:
     bus.write_byte(address,AIN2)
     value = bus.read_byte(address)
 
@@ -60,3 +61,6 @@ while True:
         StepCounter = StepCount
 
     time.sleep(0.01)
+    
+ except KeyboardInterrupt:
+    GPIO.cleanup()
