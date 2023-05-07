@@ -11,18 +11,23 @@ fire_channel = 18
 pump1_channel = 23     #fire detected
 pump2_channel =20      #heatwave
 ht_pin = 21
+servo_pin = 12   # 서보 핀
 
 # GPIO 초기화
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(fire_channel, GPIO.IN)
-
-humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
-
+GPIO.setmode(GPIO.BOARD)        # GPIO 설정
+GPIO.setup(servo_pin, GPIO.OUT)  # 서보핀 출력으로 설정
 #water pump
 GPIO.setup(pump1_channel, GPIO.OUT)
 GPIO.output(pump1_channel, GPIO.LOW)
 GPIO.setup(pump2_channel, GPIO.OUT)
 GPIO.output(pump2_channel, GPIO.LOW)
+
+humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
+
+servo = GPIO.PWM(servo_pin, 50)  # 서보핀을 PWM 모드 50Hz로 사용하기 (50Hz > 20ms)
+servo.start(0)  # 서보 PWM 시작 duty = 0, duty가 0이면 서보는 동작하지 않는다.
 
 #steping motor
 GPIO.setwarnings(False)
@@ -112,14 +117,6 @@ try:
         time.sleep(0.01)
       
 # Rainwater detection
-sensor = Adafruit_DHT.DHT11  # sensor 객체 생성
-servo_pin = 12   # 서보 핀
-
-GPIO.setmode(GPIO.BOARD)        # GPIO 설정
-GPIO.setup(servo_pin, GPIO.OUT)  # 서보핀 출력으로 설정
-
-servo = GPIO.PWM(servo_pin, 50)  # 서보핀을 PWM 모드 50Hz로 사용하기 (50Hz > 20ms)
-servo.start(0)  # 서보 PWM 시작 duty = 0, duty가 0이면 서보는 동작하지 않는다.
 
 '''
 서보 위치 제어 함수
@@ -153,6 +150,3 @@ try:
 
 except KeyboardInterrupt:
     GPIO.cleanup()
-
-
-
