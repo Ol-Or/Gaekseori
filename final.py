@@ -62,53 +62,54 @@ value = bus.read_byte(address)
 
 
 # if fire is detected
-while True:
-    if GPIO.input(FLAME) == 0 : # fire is detected
-        print('fire is detected')
-        GPIO.output(pump1_channel, GPIO.HIGH)   #water pump on
-        time.sleep(5)    
-    else :                      #fire is not detected
-        GPIO.output(pump1_channel, GPIO.LOW)   #water pump off
-        break
+try:
+    while True:
+        if GPIO.input(FLAME) == 0 : # fire is detected
+            print('fire is detected')
+            GPIO.output(pump1_channel, GPIO.HIGH)   #water pump on
+            time.sleep(5)    
+        else :                      #fire is not detected
+            GPIO.output(pump1_channel, GPIO.LOW)   #water pump off
+            break
 
 
 # 폭염 시 워터펌프 작동(온도가 일정 이상 올라가면)
 
-while True:
-    if temperature >= 30: 
-        print('temperature = {0:0.1f}*C ,water pump on!',format(temperature))
-        GPIO.output(pump2_channel, GPIO.LOW)
-        time.sleep(10)
-        break
-    else:
-        GPIO.output(pump2_channel, GPIO.HIGH)
-    time.sleep(1)
-
-#if flood occur
-while True:
-    bus.write_byte(address,AIN2)
-    value = bus.read_byte(address)
-    if value > 256: # water level
-        print('')
-        Seq = SeqClockwise if direction else SeqCounterClockwise
-    else :
-        # Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
-        break
-
-    for pin in range(0, 4):
-        xpin = StepPins[pin]
-        if Seq[StepCounter][pin] != 0:
-            GPIO.output(xpin, True)
+    while True:
+        if temperature >= 30: 
+            print('temperature = {0:0.1f}*C ,water pump on!',format(temperature))
+            GPIO.output(pump2_channel, GPIO.LOW)
+            time.sleep(10)
+            break
         else:
-            GPIO.output(xpin, False)
+            GPIO.output(pump2_channel, GPIO.HIGH)
+        time.sleep(1)
+ 
+#if flood occur
+    while True:
+        bus.write_byte(address,AIN2)
+        value = bus.read_byte(address)
+        if value > 256: # water level
+            print('Flood is occur!')
+            Seq = SeqClockwise if direction else SeqCounterClockwise
+        else :
+        # Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
+            break
 
-    StepCounter += 1
-    if StepCounter == StepCount:
-        StepCounter = 0
-    if StepCounter < 0:
-        StepCounter = StepCount
+        for pin in range(0, 4):
+            xpin = StepPins[pin]
+            if Seq[StepCounter][pin] != 0:
+                GPIO.output(xpin, True)
+            else:
+                GPIO.output(xpin, False)
 
-    time.sleep(0.01)
+        StepCounter += 1
+        if StepCounter == StepCount:
+            StepCounter = 0
+        if StepCounter < 0:
+            StepCounter = StepCount
+
+        time.sleep(0.01)
       
 # Rainwater detection
 sensor = Adafruit_DHT.DHT11  # sensor 객체 생성
@@ -132,22 +133,23 @@ def set_angle(angle):
     GPIO.output(servo_pin, False)
     pwm.ChangeDutyCycle(0)
 
-while True:
-    if humidity >= 90:  # !!!!!!여기 빗물이 있을 때 습도 값을 몰라서 아직 작성안함!!!!!!!!!
-        set_angle(0)    # 서보 0도에 위치
-        time.sleep(1)  # 1초 대기
+try:
+    while True:
+        if humidity >= 90:  # !!!!!!여기 빗물이 있을 때 습도 값을 몰라서 아직 작성안함!!!!!!!!!
+            set_angle(0)    # 서보 0도에 위치
+            time.sleep(1)  # 1초 대기
 
     # 180도에 위치
-        set_angle(180)
+            set_angle(180)
 
     # 서보 PWM 정지
-        servo.stop()
-    else:
-        set_angle(0)    # 서보 0도에 위치
-        time.sleep(1)  # 1초 대기
+            servo.stop()
+        else:
+            set_angle(0)    # 서보 0도에 위치
+            time.sleep(1)  # 1초 대기
 
         # 서보 PWM 정지
-        servo.stop()
+            servo.stop()
 
 except KeyboardInterrupt:
     GPIO.cleanup()
