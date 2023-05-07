@@ -40,9 +40,9 @@ try:
     bus.write_byte(address,AIN2)
     value = bus.read_byte(address)
     if value > 256: # 수위 측정한 값 쓰기!
-        Seq = SeqClockwise if direction else SeqCounterClockwise
+        Seq = SeqCounterClockwise if direction else SeqClockwise
     #else :
-        #Seq = SeqCounterClockwise if direction else SeqClockwise
+       # Seq = SeqClockwise if direction else SeqCounterClockwise
 
     for pin in range(0, 4):
         xpin = StepPins[pin]
