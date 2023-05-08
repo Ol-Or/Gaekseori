@@ -96,7 +96,7 @@ try:
           
  
 # Flood detection
-    while True:
+    
         bus.write_byte(address,AIN2)
         value = bus.read_byte(address)
         if value > 100: # water level
@@ -123,7 +123,7 @@ try:
         time.sleep(0.01)
         
      #Rainwater detection
-    while True:
+    
         if humidity >= 65:  
             print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
             set_angle(90)    # water tank close(first location)
