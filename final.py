@@ -64,7 +64,7 @@ StepCount=4
 bus.write_byte(address,AIN2)    #water level sensor
 value = bus.read_byte(address)
 
-# Rainwater detection
+# for rainwater detection
 def set_angle(angle):
     duty = angle / 18 + 2  # duty = angle / 18 + 2
     GPIO.output(servo_pin, True)
@@ -108,7 +108,6 @@ try:
         else :
             Seq = SeqCounterClockwise if direction else SeqClockwise 
             time.sleep(1)
-            break
 
         for pin in range(0, 4):
             xpin = StepPins[pin]
@@ -124,25 +123,23 @@ try:
             StepCounter = StepCount
 
         time.sleep(0.01)
-      
+        
+     #Rainwater detection
     while True:
         if humidity >= 65:  
             print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
-            set_angle(90)    # 서보 0도에 위치
-            time.sleep(1)  # 1초 대기
-
-    # 180도에 위치
-            set_angle(180)
+            set_angle(90)    # water tank close(first location)
+            time.sleep(1)   
+            
+            set_angle(180)   # water tank open
             time.sleep(100)
             
-    # 서보 PWM 정지
             servo.stop()
         else:
             print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water tank open!'.format(temperature, humidity))
-            set_angle(90)    
+            set_angle(90)    # water tank close
             time.sleep(100)  
 
-        # 서보 PWM 정지
             servo.stop()
 
 except KeyboardInterrupt:
