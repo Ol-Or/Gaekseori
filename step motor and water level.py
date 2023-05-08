@@ -10,13 +10,13 @@ for pin in StepPins:
     GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,False)
 
-SeqClockwise = [   #시계방향
+SeqClockwise = [   #clockwise
     [0,0,0,1],
     [0,0,1,0],
     [0,1,0,0],
     [1,0,0,0]
 ]
-SeqCounterClockwise = [  #반시계방향
+SeqCounterClockwise = [  #counterclockwise
     [1,0,0,0],
     [0,1,0,0],
     [0,0,1,0],
@@ -40,12 +40,14 @@ try:
         bus.write_byte(address,AIN2)
         value = bus.read_byte(address)
 
-        if value > 100: # 수위 측정한 값 쓰기!
+        if value > 100: 
             print('Flood is occured!')
             Seq = SeqCounterClockwise if direction else SeqClockwise
+            time.sleep(10)
         else :
             print('good!')
-            #Seq = SeqClockwise if direction else SeqCounterClockwise
+            Seq = SeqClockwise if direction else SeqCounterClockwise
+            time.sleep(0.01)
 
         for pin in range(0, 4):
             xpin = StepPins[pin]
