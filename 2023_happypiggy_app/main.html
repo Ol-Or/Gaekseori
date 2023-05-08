@@ -35,46 +35,26 @@
 
       <div class="find-icons">
         <div class="find-icons__icons">
-          <button
-            class="button"
-            type="submit"
-            value="on"
-            onclick="location.href='/IN1/1'"
-          >
+          <button class="button" type="submit" value="on" onclick="plate_on">
             <i class="fas fa-door-open fa-border"></i>
           </button>
 
           <span>on</span>
         </div>
         <div class="find-icons__icons">
-          <button
-            class="button"
-            type="submit"
-            value="off"
-            onclick="location.href='/IN2/1'"
-          >
+          <button class="button" type="submit" value="off" onclick="plate_off">
             <i class="fas fa-door-closed fa-border"></i>
           </button>
           <span>off</span>
         </div>
         <div class="find-icons__icons">
-          <button
-            class="button"
-            type="submit"
-            value="off"
-            onclick="location.href='/A1A/1'"
-          >
+          <button class="button" type="submit" value="off" onclick="pump_on">
             <i class="fas fa-tint fa-border"></i>
           </button>
           <span>on</span>
         </div>
         <div class="find-icons__icons">
-          <button
-            class="button"
-            type="submit"
-            value="off"
-            onclick="location.href='/A1A/0'"
-          >
+          <button class="button" type="submit" value="off" onclick="pump_off">
             <i class="fas fa-tint-slash fa-border"></i>
           </button>
           <span>off</span>
@@ -85,6 +65,19 @@
     <script
       src="https://kit.fontawesome.com/6478f529f2.js"
       crossorigin="anonymous"
-    ></script>
+    >
+      function plate_on() {
+          fetch('/forward');
+      }
+      function plate_off() {
+          fetch('/backward');
+      }
+      function pump_on() {
+          fetch('/on');
+      }
+      function pump_off() {
+          fetch('/off');
+      }
+    </script>
   </body>
 </html>
