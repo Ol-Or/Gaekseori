@@ -68,10 +68,10 @@ value = bus.read_byte(address)
 def set_angle(angle):
     duty = angle / 18 + 2  # duty = angle / 18 + 2
     GPIO.output(servo_pin, True)
-    pwm.ChangeDutyCycle(duty)
+    servo.ChangeDutyCycle(duty)
     time.sleep(1)
     GPIO.output(servo_pin, False)
-    pwm.ChangeDutyCycle(0)
+    servo.ChangeDutyCycle(0)
 
 # Fire detection
 try:
