@@ -89,23 +89,25 @@ try:
 
     while True:
         if temperature >= 30: 
-            print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water pump on!'.format(temperature, humidity))
-            GPIO.output(pump2_channel, GPIO.LOW)
-            time.sleep(10)
-            break
-        else:
+            print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water pump on!'.format(temperature, humidity))  #water pump on
             GPIO.output(pump2_channel, GPIO.HIGH)
-        time.sleep(1)
+            time.sleep(10)
+         
+        else:
+            print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water pump on!'.format(temperature, humidity))  #water pump off
+            GPIO.output(pump2_channel, GPIO.LOW)
+            break
  
-#if flood occur
+# Flood detection
     while True:
         bus.write_byte(address,AIN2)
         value = bus.read_byte(address)
         if value > 256: # water level
             print('Flood is occur!')
-            Seq = SeqClockwise if direction else SeqCounterClockwise
+            Seq = SeqClockwise if direction else SeqCounterClockwise  #water shield down
         else :
-        # Seq = SeqCounterClockwise if direction else SeqClockwise   시계방향(앱으로 구현)
+            Seq = SeqCounterClockwise if direction else SeqClockwise 
+            time.sleep(1)
             break
 
         for pin in range(0, 4):
