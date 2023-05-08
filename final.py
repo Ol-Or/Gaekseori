@@ -81,6 +81,7 @@ try:
             GPIO.output(pump1_channel, GPIO.HIGH)   #water pump on
             time.sleep(5)    
         else :                      #fire is not detected
+            print('good')
             GPIO.output(pump1_channel, GPIO.LOW)   #water pump off
             break
 
