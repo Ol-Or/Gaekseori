@@ -102,7 +102,7 @@ try:
     while True:
         bus.write_byte(address,AIN2)
         value = bus.read_byte(address)
-        if value > 256: # water level
+        if value > 100: # water level
             print('Flood is occur!')
             Seq = SeqClockwise if direction else SeqCounterClockwise  #water shield down
         else :
