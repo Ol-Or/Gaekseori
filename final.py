@@ -83,12 +83,8 @@ try:
         else :                      #fire is not detected
             print('good')
             GPIO.output(pump1_channel, GPIO.LOW)   #water pump off
-            break
-
-
+          
 # Heat wave
-
-    while True:
         if temperature >= 30: 
             print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water pump on!'.format(temperature, humidity))  #water pump on
             GPIO.output(pump2_channel, GPIO.HIGH)
@@ -97,7 +93,7 @@ try:
         else:
             print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water pump on!'.format(temperature, humidity))  #water pump off
             GPIO.output(pump2_channel, GPIO.LOW)
-            break
+          
  
 # Flood detection
     while True:
@@ -109,6 +105,7 @@ try:
         else :
             Seq = SeqCounterClockwise if direction else SeqClockwise 
             time.sleep(1)
+            break
 
         for pin in range(0, 4):
             xpin = StepPins[pin]
