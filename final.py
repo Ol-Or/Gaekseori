@@ -2,21 +2,21 @@ import RPi.GPIO as GPIO
 import time
 import Adafruit_DHT
 import smbus
-from time import sleep  # time 라이브러리의 sleep함수 사용
+from time import sleep  
 
-sensor = Adafruit_DHT.DHT11
+sensor = Adafruit_DHT.DHT11   #for DHT11
 
-# GPIO 핀 번호 설정
-fire_channel = 18
+# GPIO pin number
+fire_channel = 18       #fire detect
 pump1_channel = 23     #fire detected
 pump2_channel =20      #heatwave
-ht_pin = 21
-servo_pin = 12   # 서보 핀
+ht_pin = 21        #humidity and temperature sensor(DHT11)
+servo_pin = 12   # servo motor
 
-# GPIO 초기화
+# GPIO Initialization
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(fire_channel, GPIO.IN)
-GPIO.setup(servo_pin, GPIO.OUT)  # 서보핀 출력으로 설정
+GPIO.setup(servo_pin, GPIO.OUT)  
 #water pump
 GPIO.setup(pump1_channel, GPIO.OUT)
 GPIO.output(pump1_channel, GPIO.LOW)
@@ -25,30 +25,30 @@ GPIO.output(pump2_channel, GPIO.LOW)
 
 humidity,temperature= Adafruit_DHT.read_retry(sensor,ht_pin)
 
-servo = GPIO.PWM(servo_pin, 50)  # 서보핀을 PWM 모드 50Hz로 사용하기 (50Hz > 20ms)
-servo.start(0)  # 서보 PWM 시작 duty = 0, duty가 0이면 서보는 동작하지 않는다.
+servo = GPIO.PWM(servo_pin, 50)  # Using the servo pin in PWM mode at 50 Hz (50Hz > 20ms)
+servo.start(0)  # Servo PWM start duty = 0, when duty is 0, servo does not work
 
-#steping motor
+#stepping motor
 GPIO.setwarnings(False)
-StepPins=[11,13,15,16]  #steping motor GPIO
+StepPins=[11,13,15,16]  #stepping motor GPIO
 
 #PCF module address
 address = 0x48
 AIN2 = 0x42
 
-bus=smbus.SMBus(1)
+bus=smbus.SMBus(1)  #for PCF8591
 
 for pin in StepPins:
     GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,False)
 
-SeqClockwise = [   #시계방향
+SeqClockwise = [   #stepping motor clockwise
     [0,0,0,1],
     [0,0,1,0],
     [0,1,0,0],
     [1,0,0,0]
 ]
-SeqCounterClockwise = [  #반시계방향
+SeqCounterClockwise = [  #stepping motor counterclockwise
     [1,0,0,0],
     [0,1,0,0],
     [0,0,1,0],
@@ -61,19 +61,19 @@ StepCounter = 0
 
 StepCount=4
 
-bus.write_byte(address,AIN2)
+bus.write_byte(address,AIN2)    #water level sensor
 value = bus.read_byte(address)
 
 # Rainwater detection
 def set_angle(angle):
-    duty = angle / 18 + 2  # duty = 각도 / 18 + 2
+    duty = angle / 18 + 2  # duty = angle / 18 + 2
     GPIO.output(servo_pin, True)
     pwm.ChangeDutyCycle(duty)
     time.sleep(1)
     GPIO.output(servo_pin, False)
     pwm.ChangeDutyCycle(0)
 
-# if fire is detected
+# Fire detection
 try:
     while True:
         if GPIO.input(fire_channel) == 0 : # fire is detected
@@ -85,11 +85,11 @@ try:
             break
 
 
-# 폭염 시 워터펌프 작동(온도가 일정 이상 올라가면)
+# Heat wave
 
     while True:
         if temperature >= 30: 
-            print('temperature = {0:0.1f}*C ,water pump on!',format(temperature))
+            print('temperature={0:0.1f}*C  humidity={1:0.1f}%, Water pump on!'.format(temperature, humidity))
             GPIO.output(pump2_channel, GPIO.LOW)
             time.sleep(10)
             break
