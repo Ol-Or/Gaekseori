@@ -7,12 +7,13 @@ A1A = 23
 GPIO.setup(A1A, GPIO.OUT)
 GPIO.output(A1A, GPIO.LOW)
 
+
 def run_motor(duration):
     GPIO.output(A1A, GPIO.HIGH)
     time.sleep(duration)
     GPIO.output(A1A, GPIO.LOW)
 
-# 모터를 10초간 동작시키기
+
 run_motor(10)
 
 GPIO.cleanup()

@@ -13,7 +13,7 @@ StepCount = 4
 
 for i in range(5):
     for pin in range(0, 4):
-        Seq = [[1, 0, 0, 1],  # 정방향
+        Seq = [[1, 0, 0, 1],  # counter
                [1, 0, 1, 0],
                [0, 1, 1, 0],
                [0, 1, 0, 1]]
@@ -31,7 +31,7 @@ for i in range(5):
 
 for i in range(5):
     for pin in range(3, -1, -1):
-        Seq = [[1, 0, 0, 1],  # 역방향
+        Seq = [[1, 0, 0, 1],  # stepcounter
                [1, 0, 1, 0],
                [0, 1, 1, 0],
                [0, 1, 0, 1]]
@@ -48,4 +48,3 @@ for i in range(5):
     time.sleep(0.002)
 
 GPIO.cleanup()
-
