@@ -14,16 +14,19 @@ GPIO.setwarnings(False)
 # 스텝모터 차수판
 IN1 = 11  # Input Pin
 IN2 = 13  # Input Pin
-ENA = 15  # Enable Pin
+IN3 = 15
+IN4 =16
+
 # 워터펌프 지붕
 A1A = 23
 # LED 핀들을 딕셔너리 변수로 선언
-pin_dict = {'IN1': 11, 'IN2': 13, 'ENA': 15, 'A1A': 23}
+pin_dict = {'IN1': 11, 'IN2': 13, 'IN3': 15,'IN4':16, 'A1A': 23}
 GPIO.setup(pin_dict['IN1'], GPIO.OUT)   # 각각의 LED 핀들을 출력으로 설정
 GPIO.setup(pin_dict['IN2'], GPIO.OUT)
-GPIO.setup(pin_dict['ENA'], GPIO.OUT)   # 각각 LED의 현재 상태를 나타내는 변수
+GPIO.setup(pin_dict['IN3'], GPIO.OUT)   # 각각 LED의 현재 상태를 나타내는 변수
+GPIO.setup(pin_dict['IN4'], GPIO.OUT)
 GPIO.setup(pin_dict['A1A'], GPIO.OUT)   # 각각 LED의 현재 상태를 나타내는 변수
-state_dict = {'IN1': 0, 'IN2': 0, 'ENA': 0, 'A1A': 0}
+state_dict = {'IN1': 0, 'IN2': 0, 'IN3': 0,'IN4':0, 'A1A': 0}
 
 
 @app.route('/')                     # 기본 주소
@@ -37,6 +40,8 @@ def control(pin, state):      # 각각의 pin을 켜고 끄기 위한 뷰함수
     # 참고: color와 state를 전달받는 부분은 index.html 부분에 코드가 있음
     GPIO.output(pin_dict['IN1'], state_dict['IN1'])
     GPIO.output(pin_dict['IN2'], state_dict['IN2'])
+    GPIO.output(pin_dict['IN3'], state_dict['IN3'])
+    GPIO.output(pin_dict['IN4'], state_dict['IN4'])
     GPIO.output(pin_dict['A1A'], state_dict['A1A'])
     return redirect(url_for('hello'))    # 제어가 끝나면 기본주소로 돌아감
 
