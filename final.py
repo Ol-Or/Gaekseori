@@ -105,7 +105,6 @@ try:
         else :
             Seq = SeqCounterClockwise if direction else SeqClockwise 
             time.sleep(1)
-            break
 
         for pin in range(0, 4):
             xpin = StepPins[pin]
